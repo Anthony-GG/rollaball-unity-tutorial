@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (Time.time -lastJumpTime < jumpCooldown)
+        if (Time.time - lastJumpTime < jumpCooldown)
         {
             return;
         }
