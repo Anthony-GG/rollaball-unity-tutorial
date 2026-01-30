@@ -6,7 +6,7 @@ public class InvisiblePlaneController : MonoBehaviour
     {
         if (!obj.CompareTag("Player")) return; //looks for an object with a Player tag
 
-        //sets the momentum back to zero
+        ////sets the momentum back to zero
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         if (rb != null)
         {

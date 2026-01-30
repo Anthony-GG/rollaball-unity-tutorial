@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2884f720cfd754b9535e1a30cbb2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickUpController
+  countText: {fileID: 0}
 --- !u!54 &5818344063664307932
 Rigidbody:
   m_ObjectHideFlags: 0

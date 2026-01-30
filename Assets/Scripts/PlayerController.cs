@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using TMPro; //for text updates
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,10 +12,12 @@ public class PlayerController : MonoBehaviour
 
     private float lastJumpTime = -999f;
     private bool isGrounded = true;
+    private int count; //player score
 
     public float speed = 10f; //player speed
     public float jumpForce = 5f; //jump height
     public float jumpCooldown = .5f; //jump cooldown
+    public TextMeshProUGUI countText; //ui player score
 
 
 
@@ -23,6 +26,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        count = 0;
+        SetCountText();
     }
 
     private void FixedUpdate()
@@ -34,6 +39,18 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         isGrounded = true;
+    }
+
+    private void OnTriggerEnter(Collider obj)
+    {
+        if (!obj.CompareTag("Collectable")) return; //checks to make sure it's a collectable
+        count++;
+        SetCountText();
+    }
+
+    void SetCountText()
+    {
+        countText.text = "Count: " + count.ToString();
     }
 
     void OnMove(InputValue movementValue) //OnMove function that takes movementValues and translates them to movement
