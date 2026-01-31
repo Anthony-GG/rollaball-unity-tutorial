@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
-using TMPro; //for text updates
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine.SceneManagement; //for text updates
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 5f; //jump height
     public float jumpCooldown = .5f; //jump cooldown
     public TextMeshProUGUI countText; //ui player score
+    public GameObject winTextObject; //win screen text
 
 
 
@@ -28,6 +31,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         count = 0;
         SetCountText();
+        winTextObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -51,6 +55,11 @@ public class PlayerController : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
+
+        if (count >= 12)
+        {
+            SceneManager.LoadScene("EndScreen");
+        }
     }
 
     void OnMove(InputValue movementValue) //OnMove function that takes movementValues and translates them to movement
