@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     private float lastJumpTime = -999f;
     private bool isGrounded = true;
-    private int count; //player score
+    private int count; //player scorehttps://chatgpt.com/
     private int lives; //player lives
 
     public float speed = 10f; //player speed
@@ -45,6 +45,12 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         isGrounded = true;
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Vector3 dir = (transform.position - collision.transform.position).normalized;
+            rb.linearVelocity = Vector3.zero;
+            rb.AddForce(dir * speed * 2 + Vector3.up * 10f, ForceMode.Impulse);
+        }
     }
 
     private void OnTriggerEnter(Collider obj)
