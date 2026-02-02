@@ -1,17 +1,19 @@
-using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
-public class GameOverLogic : MonoBehaviour
+using UnityEngine.UI;
 
+public class EndScreenLogic : MonoBehaviour
 {
 
-    private int i = 0;
+    public RawImage congratsVideo;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        WaitSeconds(8);
+        gameObject.SetActive(false);
+        congratsVideo.gameObject.SetActive(false);
+        WaitSeconds(3);
     }
 
     // Update is called once per frame
@@ -24,7 +26,7 @@ public class GameOverLogic : MonoBehaviour
     {
         int ticks = seconds * 1000;
         await Task.Delay(ticks);
-        SceneManager.LoadScene("MiniGame");
+        gameObject.SetActive(true);
+        congratsVideo.gameObject.SetActive(true);
     }
-
 }
