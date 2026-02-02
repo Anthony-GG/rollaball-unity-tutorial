@@ -40,6 +40,11 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
         rb.AddForce(movement * speed);
+
+        if (rb.linearVelocity.y < 0) // only when falling
+        {
+            rb.AddForce(Vector3.down * 20f, ForceMode.Acceleration);
+        }
     }
 
     void OnCollisionEnter(Collision collision)

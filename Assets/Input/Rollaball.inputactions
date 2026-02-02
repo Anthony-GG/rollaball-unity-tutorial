@@ -266,6 +266,17 @@
                 },
                 {
                     "name": "",
+                    "id": "92c1c0a5-5d99-4c0f-a624-866de2880fe1",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a7ed5b07-6404-4cee-ad95-dbd218b4dd25",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
