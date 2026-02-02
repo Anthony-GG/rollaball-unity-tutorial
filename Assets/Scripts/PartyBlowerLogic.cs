@@ -9,8 +9,6 @@ public class PartyBlowerLogic : MonoBehaviour
     public GameObject blower4;
     public GameObject blower5;
 
-    public AudioSource blower1_audio;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
