@@ -15,12 +15,13 @@ public class PlayerController : MonoBehaviour
     private float lastJumpTime = -999f;
     private bool isGrounded = true;
     private int count; //player score
+    private int lives; //player lives
 
     public float speed = 10f; //player speed
     public float jumpForce = 5f; //jump height
     public float jumpCooldown = .5f; //jump cooldown
     public TextMeshProUGUI countText; //ui player score
-    public GameObject winTextObject; //win screen text
+    public TextMeshProUGUI livesText; //ui player lives
 
 
 
@@ -30,7 +31,9 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         count = 0;
+        lives = 3;
         SetCountText();
+        livesText.text = "Lives: " + lives.ToString();
     }
 
     private void FixedUpdate()
@@ -46,9 +49,30 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider obj)
     {
-        if (!obj.CompareTag("Collectable")) return; //checks to make sure it's a collectable
-        count++;
-        SetCountText();
+        if (obj.CompareTag("Collectable"))
+        {
+            count++;
+            SetCountText(); return;
+        }
+        if (obj.CompareTag("Damage"))
+        {
+            SetLivesCount(); return;
+        } else
+        {
+            return;
+        }
+
+    }
+
+    void SetLivesCount()
+    {
+        lives--;
+        livesText.text = "Lives: " + lives.ToString();
+
+        if (lives <= 0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     void SetCountText()
